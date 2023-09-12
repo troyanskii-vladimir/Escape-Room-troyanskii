@@ -1,4 +1,4 @@
-function LoginPage() {
+function LoginPage(): JSX.Element {
   return (
     <div className="wrapper">
       <header className="header">

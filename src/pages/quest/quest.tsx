@@ -1,4 +1,4 @@
-function QuestPage() {
+function QuestPage(): JSX.Element {
   return (
     <div className="wrapper">
       <header className="header">
