@@ -1,3 +1,5 @@
+import { SortingLevel, SortingType } from "./types/sorting";
+
 export enum AppRoute {
   Main = '/',
   Booking = '/booking',
@@ -5,7 +7,11 @@ export enum AppRoute {
   Login = '/login',
   MyQuests = '/my-quests',
   Quest = '/quest',
-};
+}
+
+export enum APIRoute {
+  Quest = '/quest',
+}
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -13,3 +19,54 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum SliceNames {
+  Data = 'Data',
+  Auth = 'Auth',
+}
+
+
+export const SORT_TYPE: SortingType[] = [
+  {
+    type: 'all',
+    title: 'Все квесты',
+  },
+  {
+    type: 'adventures',
+    title: 'Приключения',
+  },
+  {
+    type: 'horror',
+    title: 'Ужасы',
+  },
+  {
+    type: 'mystic',
+    title: 'Мистика',
+  },
+  {
+    type: 'detective',
+    title: 'Детектив',
+  },
+  {
+    type: 'sci-fi',
+    title: 'Sci-fi',
+  },
+]
+
+export const SORT_LEVEL: SortingLevel[] = [
+  {
+    type: 'all',
+    title: 'Любой',
+  },
+  {
+    type: 'easy',
+    title: 'Лёгкий',
+  },
+  {
+    type: 'medium',
+    title: 'Средний',
+  },
+  {
+    type: 'hard',
+    title: 'Сложный',
+  },
+]

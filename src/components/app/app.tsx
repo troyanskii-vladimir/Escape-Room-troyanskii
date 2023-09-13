@@ -12,6 +12,11 @@ import Page404 from '../../pages/404/404';
 
 import { AppRoute, AuthorizationStatus } from '../../config';
 
+import { store } from '../../store';
+import { fetchQuestAction } from '../../store/api-action';
+
+
+store.dispatch(fetchQuestAction());
 
 function App() {
   return (

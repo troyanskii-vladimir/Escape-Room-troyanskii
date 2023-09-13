@@ -1,9 +1,15 @@
 import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Auth from '../../components/auth/auth';
+import { useAppSelector } from '../../components/hooks';
 
 
 function MainPage(): JSX.Element {
+
+  const quests = useAppSelector((store) => store.questsFiltered);
+  const type = useAppSelector((store) => store.activeType);
+  const level = useAppSelector((store) => store.activeLevel);
+
   return (
     <div className="wrapper">
       <header className="header">
