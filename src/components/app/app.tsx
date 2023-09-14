@@ -12,13 +12,32 @@ import Page404 from '../../pages/404/404';
 
 import { AppRoute, AuthorizationStatus } from '../../config';
 
-import { store } from '../../store';
-import { fetchQuestAction } from '../../store/api-action';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getQuests, getStatusLoading } from '../../store/quests-data/quest-data.selectors';
+import { useEffect } from 'react';
+import { checkAuthAction, fetchQuestAction } from '../../store/api-action';
+import { getAuthorizationStatus } from '../../store/auth-data/auth-process.selectors';
 
-
-store.dispatch(fetchQuestAction());
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  // const isQuestsDataLoading = useAppSelector(getStatusLoading);
+  // const quests = useAppSelector(getQuests);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Unknown) {
+      dispatch(checkAuthAction());
+    }
+  }, []);
+
+
+  useEffect(() => {
+    dispatch(fetchQuestAction());
+  }, []);
+
+
   return (
     <HelmetProvider>
       <BrowserRouter>

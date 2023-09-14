@@ -11,6 +11,8 @@ export enum AppRoute {
 
 export enum APIRoute {
   Quest = '/quest',
+  Login = '/login',
+  Logout = '/logout',
 }
 
 export enum AuthorizationStatus {
@@ -54,7 +56,7 @@ export const SORT_TYPE: SortingType[] = [
 
 export const SORT_LEVEL: SortingLevel[] = [
   {
-    type: 'all',
+    type: 'any',
     title: 'Любой',
   },
   {

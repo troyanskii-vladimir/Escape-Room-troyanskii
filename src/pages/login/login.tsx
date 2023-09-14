@@ -1,4 +1,30 @@
+import { FormEvent, useRef, useState } from "react";
+import { useAppDispatch } from "../../hooks";
+import { loginAction } from "../../store/api-action";
+
 function LoginPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const [isCorrectLogin, setIsCorrectLogin] = useState(true);
+  const [isCorrectPassword, setIsCorrectPassword] = useState(true);
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    setIsCorrectLogin(true);
+    setIsCorrectPassword(true);
+
+    if (loginRef.current && passwordRef.current) {
+      dispatch(loginAction({
+        login: loginRef.current.value.trim(),
+        password: passwordRef.current.value.trim(),
+      }));
+    }
+  };
+
+
   return (
     <div className="wrapper">
       <header className="header">
@@ -58,6 +84,7 @@ function LoginPage(): JSX.Element {
               className="login-form"
               action="https://echo.htmlacademy.ru/"
               method="post"
+              onSubmit={handleSubmit}
             >
               <div className="login-form__inner-wrapper">
                 <h1 className="title title--size-s login-form__title">Вход</h1>
@@ -67,11 +94,12 @@ function LoginPage(): JSX.Element {
                       E&nbsp;–&nbsp;mail
                     </label>
                     <input
+                      ref={loginRef}
                       type="email"
                       id="email"
                       name="email"
                       placeholder="Адрес электронной почты"
-                      required="required"
+                      required
                     />
                   </div>
                   <div className="custom-input login-form__input">
@@ -79,11 +107,12 @@ function LoginPage(): JSX.Element {
                       Пароль
                     </label>
                     <input
+                      ref={passwordRef}
                       type="password"
                       id="password"
                       name="password"
                       placeholder="Пароль"
-                      required="required"
+                      required
                     />
                   </div>
                 </div>
@@ -99,7 +128,7 @@ function LoginPage(): JSX.Element {
                   type="checkbox"
                   id="id-order-agreement"
                   name="user-agreement"
-                  required=""
+                  required
                 />
                 <span className="custom-checkbox__icon">
                   <svg width={20} height={17} aria-hidden="true">

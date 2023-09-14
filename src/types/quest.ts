@@ -1,4 +1,4 @@
-export type Level = 'all' | 'easy' | 'medium' | 'hard';
+export type Level = 'any' | 'easy' | 'medium' | 'hard';
 
 export type Type = 'all' | 'adventures' | 'horror' | 'mystic' | 'detective' | 'sci-fi';
 
