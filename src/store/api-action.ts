@@ -8,6 +8,7 @@ import { UserData } from '../types/user-data';
 
 import { APIRoute } from '../config';
 import { dropToken, saveToken } from '../services/token';
+import { Reservation } from '../types/reservation';
 
 
 export const fetchQuestAction = createAsyncThunk<QuestPreview[], undefined, {
@@ -58,5 +59,18 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+  }
+);
+
+
+export const fetchReservationAction = createAsyncThunk<Reservation[], undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchReservation',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<Reservation[]>(APIRoute.Reservation);
+    return data;
   }
 );

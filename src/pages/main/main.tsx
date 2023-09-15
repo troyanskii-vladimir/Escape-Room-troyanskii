@@ -1,6 +1,3 @@
-import { useAppSelector } from '../../hooks';
-import { getQuestsFiltered } from '../../store/quests-data/quest-data.selectors';
-
 import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Auth from '../../components/auth/auth';
@@ -11,14 +8,13 @@ import Footer from '../../components/footer/footer';
 
 
 function MainPage(): JSX.Element {
-  const quests = useAppSelector(getQuestsFiltered);
 
   return (
     <div className="wrapper">
       <header className="header">
         <div className="container container--size-l">
           <Logo />
-          <Navigation />
+          <Navigation layout='main' />
           <Auth />
         </div>
       </header>
@@ -39,7 +35,7 @@ function MainPage(): JSX.Element {
             </form>
           </div>
           <h2 className="title visually-hidden">Выберите квест</h2>
-          <QuestsList quests={quests} />
+          <QuestsList />
         </div>
       </main>
       <Footer />

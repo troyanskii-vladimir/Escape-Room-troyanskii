@@ -3,6 +3,7 @@ import { Level, QuestPreview, Type } from './quest';
 import { store } from '../store';
 import { AuthorizationStatus } from '../config';
 import { UserData } from './user-data';
+import { Reservation } from './reservation';
 
 
 export type State = ReturnType<typeof store.getState>;
@@ -16,6 +17,7 @@ export type QuestsData = {
   activeLevel: Level;
   questsFiltered: QuestPreview[];
   isQuestsLoading: boolean;
+  reservations: Reservation[];
 }
 
 export type AuthProcess = {

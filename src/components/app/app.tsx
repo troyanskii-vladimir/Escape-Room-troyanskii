@@ -13,29 +13,46 @@ import Page404 from '../../pages/404/404';
 import { AppRoute, AuthorizationStatus } from '../../config';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getQuests, getStatusLoading } from '../../store/quests-data/quest-data.selectors';
+import { getStatusLoading } from '../../store/quests-data/quest-data.selectors';
 import { useEffect } from 'react';
-import { checkAuthAction, fetchQuestAction } from '../../store/api-action';
+import { checkAuthAction, fetchQuestAction, fetchReservationAction } from '../../store/api-action';
 import { getAuthorizationStatus } from '../../store/auth-data/auth-process.selectors';
+import Loader from '../loader/loader';
+import { clearReservation } from '../../store/quests-data/quest-data.slice';
 
 
 function App() {
   const dispatch = useAppDispatch();
 
-  // const isQuestsDataLoading = useAppSelector(getStatusLoading);
-  // const quests = useAppSelector(getQuests);
+  const isQuestsDataLoading = useAppSelector(getStatusLoading);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Unknown) {
       dispatch(checkAuthAction());
     }
-  }, []);
+  }, [authorizationStatus]);
 
 
   useEffect(() => {
     dispatch(fetchQuestAction());
   }, []);
+
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchReservationAction());
+    } else {
+      dispatch(clearReservation());
+    }
+  }, [authorizationStatus]);
+
+
+  if (isQuestsDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
+    return (
+      <Loader />
+    );
+  }
 
 
   return (
@@ -53,11 +70,7 @@ function App() {
           <Route
             path={AppRoute.Login}
             element={
-              <PrivateRoute
-                authorizationStatus={AuthorizationStatus.Auth}
-              >
-                <LoginPage />
-              </PrivateRoute>
+              <LoginPage />
             }
           />
 
@@ -65,7 +78,7 @@ function App() {
             path={AppRoute.MyQuests}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.Auth}
+                authorizationStatus={authorizationStatus}
               >
                 <MyQuestsPage />
               </PrivateRoute>

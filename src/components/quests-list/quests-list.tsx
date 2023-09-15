@@ -1,12 +1,12 @@
-import { QuestPreview } from '../../types/quest';
+import { useAppSelector } from '../../hooks';
+import { getQuestsFiltered } from '../../store/quests-data/quest-data.selectors';
+
 import QuestItem from '../quest-item/quest-item';
 
 
-type QuestsListProps = {
-  quests: QuestPreview[];
-};
+function QuestsList(): JSX.Element {
+  const quests = useAppSelector(getQuestsFiltered);
 
-function QuestsList({quests}: QuestsListProps): JSX.Element {
   return (
     <div className="cards-grid">
       {
