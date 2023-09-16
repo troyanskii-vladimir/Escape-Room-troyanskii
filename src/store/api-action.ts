@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
 import { State, AppDispatch } from '../types/state';
-import { QuestPreview } from '../types/quest';
+import { QuestData, QuestPreview } from '../types/quest';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
@@ -71,6 +71,19 @@ export const fetchReservationAction = createAsyncThunk<Reservation[], undefined,
   'fetchReservation',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<Reservation[]>(APIRoute.Reservation);
+    return data;
+  }
+);
+
+
+export const fetchQuestDataAction = createAsyncThunk<QuestData, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchQuestData',
+  async (questId, {extra: api}) => {
+    const {data} = await api.get<QuestData>(`${APIRoute.Quest}/${questId}`);
     return data;
   }
 );

@@ -7,8 +7,9 @@ import ContactsPage from '../../pages/contacts/contacts';
 import LoginPage from '../../pages/login/login';
 import MyQuestsPage from '../../pages/my-quests/my-quests';
 import QuestPage from '../../pages/quest/quest';
-// import BookingPage from '../../pages/booking/booking';
+import BookingPage from '../../pages/booking/booking';
 import Page404 from '../../pages/404/404';
+import Loader from '../loader/loader';
 
 import { AppRoute, AuthorizationStatus } from '../../config';
 
@@ -17,7 +18,6 @@ import { getStatusLoading } from '../../store/quests-data/quest-data.selectors';
 import { useEffect } from 'react';
 import { checkAuthAction, fetchQuestAction, fetchReservationAction } from '../../store/api-action';
 import { getAuthorizationStatus } from '../../store/auth-data/auth-process.selectors';
-import Loader from '../loader/loader';
 import { clearReservation } from '../../store/quests-data/quest-data.slice';
 
 
@@ -79,7 +79,7 @@ function App() {
           <Route
             path={AppRoute.MyQuests}
             element={
-              <PrivateRoute >
+              <PrivateRoute>
                 <MyQuestsPage />
               </PrivateRoute>
             }
@@ -88,7 +88,16 @@ function App() {
           <Route path={AppRoute.Quest}>
             <Route index element={<Page404 />} />
             <Route path=':id' element={<QuestPage />} />
+            <Route
+              path={`:id${AppRoute.Booking}`}
+              element={
+                <PrivateRoute>
+                  <BookingPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
+
 
           <Route
             path={AppRoute.Contacts}

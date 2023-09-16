@@ -15,5 +15,5 @@ export type QuestPreview = {
 export type QuestData = QuestPreview & {
   description: string;
   coverImg: string;
-  coverImgWeb: string;
+  coverImgWebp: string;
 }

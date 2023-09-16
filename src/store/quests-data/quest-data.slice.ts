@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { SORT_LEVEL, SORT_TYPE, SliceNames } from '../../config';
-import { fetchQuestAction, fetchReservationAction } from '../api-action';
+import { fetchQuestAction, fetchQuestDataAction, fetchReservationAction } from '../api-action';
+import { QuestData } from '../../types/quest';
 
 
 const initialState: QuestsData = {
@@ -11,6 +12,8 @@ const initialState: QuestsData = {
   questsFiltered: [],
   isQuestsLoading: true,
   reservations: [],
+  questData: {} as QuestData,
+  questDataError: false,
 };
 
 export const questsData = createSlice({
@@ -65,6 +68,19 @@ export const questsData = createSlice({
       })
       .addCase(fetchReservationAction.rejected, (state) => {
         state.isQuestsLoading = false;
+      })
+      .addCase(fetchQuestDataAction.pending, (state) => {
+        state.isQuestsLoading = true;
+        state.questDataError = false;
+      })
+      .addCase(fetchQuestDataAction.fulfilled, (state, action) => {
+        state.isQuestsLoading = false;
+        state.questDataError = false;
+        state.questData = action.payload;
+      })
+      .addCase(fetchQuestDataAction.rejected, (state) => {
+        state.isQuestsLoading = false;
+        state.questDataError = true;
       })
   },
 });

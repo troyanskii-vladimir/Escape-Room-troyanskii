@@ -1,4 +1,4 @@
-import { Level, QuestPreview, Type } from './quest';
+import { Level, QuestData, QuestPreview, Type } from './quest';
 
 import { store } from '../store';
 import { AuthorizationStatus } from '../config';
@@ -18,6 +18,8 @@ export type QuestsData = {
   questsFiltered: QuestPreview[];
   isQuestsLoading: boolean;
   reservations: Reservation[];
+  questData: QuestData;
+  questDataError: boolean;
 }
 
 export type AuthProcess = {
