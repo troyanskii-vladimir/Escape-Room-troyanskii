@@ -1,0 +1,5 @@
+.error {
+  position: absolute;
+  color: orangered;
+  transform: translateY(400%);
+}

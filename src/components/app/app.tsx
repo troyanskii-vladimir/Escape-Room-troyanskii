@@ -1,7 +1,7 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-import PrivateRoute from '../private-route/private-route';
+import { PrivateRoute, PrivateRouteLogin } from '../private-route/private-route';
 import MainPage from '../../pages/main/main';
 import ContactsPage from '../../pages/contacts/contacts';
 import LoginPage from '../../pages/login/login';
@@ -70,16 +70,16 @@ function App() {
           <Route
             path={AppRoute.Login}
             element={
-              <LoginPage />
+              <PrivateRouteLogin>
+                <LoginPage />
+              </PrivateRouteLogin>
             }
           />
 
           <Route
             path={AppRoute.MyQuests}
             element={
-              <PrivateRoute
-                authorizationStatus={authorizationStatus}
-              >
+              <PrivateRoute >
                 <MyQuestsPage />
               </PrivateRoute>
             }

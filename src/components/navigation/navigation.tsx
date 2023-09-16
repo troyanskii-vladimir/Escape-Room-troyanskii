@@ -6,7 +6,7 @@ import { AppRoute, AuthorizationStatus } from '../../config';
 
 
 type NavigationProps = {
-  layout: 'main' | 'contacts' | 'favorites';
+  layout?: 'main' | 'contacts' | 'favorites';
 }
 
 function Navigation({layout}: NavigationProps): JSX.Element {

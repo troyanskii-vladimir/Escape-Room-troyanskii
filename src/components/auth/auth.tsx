@@ -5,14 +5,18 @@ import { AppRoute, AuthorizationStatus } from '../../config';
 import { logoutAction } from '../../store/api-action';
 
 
-function Auth(): JSX.Element {
+type AuthProps = {
+  layout?: 'loginPage';
+}
+
+function Auth({layout}: AuthProps): JSX.Element {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <div className="header__side-nav">
       {
-        authorizationStatus === AuthorizationStatus.Auth &&
+        authorizationStatus === AuthorizationStatus.Auth && layout !== 'loginPage' &&
         <Link
           className="btn btn--accent header__side-item"
           to={AppRoute.Main}
@@ -25,7 +29,7 @@ function Auth(): JSX.Element {
         </Link>
       }
       {
-        authorizationStatus !== AuthorizationStatus.Auth &&
+        authorizationStatus !== AuthorizationStatus.Auth && layout !== 'loginPage' &&
         <Link className="btn header__login-btn header__side-item" to={AppRoute.Login}>
           Вход
         </Link>
