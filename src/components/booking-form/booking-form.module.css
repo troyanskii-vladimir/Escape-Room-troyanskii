@@ -1,0 +1,11 @@
+.error {
+  position: absolute;
+  color: orangered;
+  transform: translateY(400%);
+}
+
+.error_up {
+  position: absolute;
+  color: orangered;
+  transform: translateY(-150%);
+}

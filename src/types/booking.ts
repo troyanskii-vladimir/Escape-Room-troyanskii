@@ -13,3 +13,14 @@ export type Booking = {
     tomorrow: Slot[];
   }
 }
+
+export type DataForBooking = {
+  date: string;
+  time: string;
+  contactPerson: string;
+  phone: string;
+  withChildren: boolean;
+  peopleCount: number;
+  placeId: string;
+  questId: string;
+}

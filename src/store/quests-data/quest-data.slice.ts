@@ -99,6 +99,9 @@ export const questsData = createSlice({
       .addCase(fetchQuestBookingAction.rejected, (state) => {
         state.isQuestsLoading = false;
       })
+      // .addCase(bookingAction.rejected, (state) => {
+
+      // })
   },
 });
 
