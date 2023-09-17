@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { SORT_LEVEL, SORT_TYPE, SliceNames } from '../../config';
-import { fetchQuestAction, fetchQuestDataAction, fetchReservationAction } from '../api-action';
+import { fetchQuestAction, fetchQuestBookingAction, fetchQuestDataAction, fetchReservationAction } from '../api-action';
 import { QuestData } from '../../types/quest';
 
 
@@ -14,6 +14,8 @@ const initialState: QuestsData = {
   reservations: [],
   questData: {} as QuestData,
   questDataError: false,
+  questBookingData: [],
+  questBookingPlaceId: '',
 };
 
 export const questsData = createSlice({
@@ -37,6 +39,9 @@ export const questsData = createSlice({
     },
     clearReservation: (state) => {
       state.reservations = [];
+    },
+    changeBookingPlaceId: (state, action) => {
+      state.questBookingPlaceId = action.payload;
     }
   },
   extraReducers(builder) {
@@ -82,7 +87,19 @@ export const questsData = createSlice({
         state.isQuestsLoading = false;
         state.questDataError = true;
       })
+      .addCase(fetchQuestBookingAction.pending, (state) => {
+        state.isQuestsLoading = true;
+        state.questBookingData = [];
+      })
+      .addCase(fetchQuestBookingAction.fulfilled, (state, action) => {
+        state.isQuestsLoading = false;
+        state.questBookingData = action.payload;
+        state.questBookingPlaceId = action.payload[0].id;
+      })
+      .addCase(fetchQuestBookingAction.rejected, (state) => {
+        state.isQuestsLoading = false;
+      })
   },
 });
 
-export const { changeTypeFilter, changeLevelFilter, changeActiveQuests, clearReservation } = questsData.actions;
+export const { changeTypeFilter, changeLevelFilter, changeActiveQuests, clearReservation, changeBookingPlaceId } = questsData.actions;

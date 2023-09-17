@@ -4,6 +4,7 @@ import { store } from '../store';
 import { AuthorizationStatus } from '../config';
 import { UserData } from './user-data';
 import { Reservation } from './reservation';
+import { Booking } from './booking';
 
 
 export type State = ReturnType<typeof store.getState>;
@@ -20,6 +21,8 @@ export type QuestsData = {
   reservations: Reservation[];
   questData: QuestData;
   questDataError: boolean;
+  questBookingData: Booking[];
+  questBookingPlaceId: string;
 }
 
 export type AuthProcess = {

@@ -14,6 +14,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Reservation = '/reservation',
+  Booking = '/booking',
 }
 
 export enum AuthorizationStatus {
@@ -73,3 +74,13 @@ export const SORT_LEVEL: SortingLevel[] = [
     title: 'Сложный',
   },
 ]
+
+export const TILE_LAYER =
+  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+
+export const COPYRIGHT =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
+export const URL_MARKER_DEFAULT = './img/svg/pin-default.svg';
+
+export const URL_MARKER_ACTIVE = './img/svg/pin-active.svg';

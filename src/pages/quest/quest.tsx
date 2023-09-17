@@ -5,7 +5,7 @@ import Navigation from '../../components/navigation/navigation';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { getQuestData, getQuestDataError } from '../../store/quests-data/quest-data.selectors';
-import { fetchQuestDataAction } from '../../store/api-action';
+import { fetchQuestBookingAction, fetchQuestDataAction } from '../../store/api-action';
 import { AppRoute, SORT_LEVEL, SORT_TYPE } from '../../config';
 import Footer from '../../components/footer/footer';
 import Page404 from '../404/404';
@@ -25,6 +25,7 @@ function QuestPage(): JSX.Element {
 
     if (needToGetData && id && !questDataError) {
       dispatch(fetchQuestDataAction(id));
+      dispatch(fetchQuestBookingAction(id));
     }
 
   }, [id, questDataError])

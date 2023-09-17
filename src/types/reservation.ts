@@ -1,10 +1,11 @@
+import { LatLngBoundsExpression, LatLngExpression } from "leaflet";
 import { QuestPreview } from "./quest";
 
 export type Date = 'today' | 'tomorrow';
 
 export type Location = {
   address: string;
-  coords: [number];
+  coords: number[] | LatLngBoundsExpression;
 }
 
 export type Reservation = {
