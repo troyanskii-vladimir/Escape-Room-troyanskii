@@ -1,15 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
-import Auth from '../../components/auth/auth';
-import Logo from '../../components/logo/logo';
-import Navigation from '../../components/navigation/navigation';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getQuestData, getQuestDataError } from '../../store/quests-data/quest-data.selectors';
 import { fetchQuestBookingAction, fetchQuestDataAction } from '../../store/api-action';
 import { AppRoute, SORT_LEVEL, SORT_TYPE } from '../../config';
+
+import Auth from '../../components/auth/auth';
+import Logo from '../../components/logo/logo';
+import Navigation from '../../components/navigation/navigation';
 import Footer from '../../components/footer/footer';
 import Page404 from '../404/404';
-
 
 
 function QuestPage(): JSX.Element {

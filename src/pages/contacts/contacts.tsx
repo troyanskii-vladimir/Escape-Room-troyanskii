@@ -1,12 +1,12 @@
 import Auth from '../../components/auth/auth';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import MapStatic from '../../components/map-static/map-static';
 import Navigation from '../../components/navigation/navigation';
 import PageDecor from '../../components/page-decor/page-decor';
 
 
 function ContactsPage() {
-
   return (
     <div className="wrapper">
       <header className="header">
@@ -61,7 +61,7 @@ function ContactsPage() {
             </dl>
             <div className="contacts__map">
               <div className="map">
-                <div className="map__container" />
+                <MapStatic coords={[59.968137, 30.316272]} />
               </div>
             </div>
           </div>

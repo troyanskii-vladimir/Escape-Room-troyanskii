@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
-import Auth from '../../components/auth/auth';
-import Logo from '../../components/logo/logo';
-import Navigation from '../../components/navigation/navigation';
-import PageDecor from '../../components/page-decor/page-decor';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getQuestBookingData, getQuestBookingPlaceId, getQuestData, getQuestDataError } from '../../store/quests-data/quest-data.selectors';
 import { fetchQuestBookingAction, fetchQuestDataAction } from '../../store/api-action';
+
+import Auth from '../../components/auth/auth';
+import Logo from '../../components/logo/logo';
+import Navigation from '../../components/navigation/navigation';
+import PageDecor from '../../components/page-decor/page-decor';
 import Page404 from '../404/404';
 import Map from '../../components/map/map';
 import Footer from '../../components/footer/footer';
 import BookingForm from '../../components/booking-form/booking-form';
+
 
 function BookingPage() {
   const dispatch = useAppDispatch();
@@ -24,7 +26,7 @@ function BookingPage() {
 
 
   useEffect(() => {
-    const needToGetData = quest.id !== id || Object.keys(quest).length === 0 || Object.keys(bookingData).length === 0;
+    const needToGetData = quest.id !== id || Object.keys(quest).length === 0 || Object.keys(bookingData).length === 0 || Object.keys(selectedId).length === 0 ;
 
     if (needToGetData && id && !questDataError) {
       dispatch(fetchQuestDataAction(id));

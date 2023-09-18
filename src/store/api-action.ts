@@ -122,7 +122,7 @@ export const deleteReservationAction = createAsyncThunk<void, string, {
   extra: AxiosInstance;
 }>(
   'deleteReservation',
-  async ({reservationId}, {extra: api}) => {
+  async (reservationId, {extra: api}) => {
     await api.delete(`${APIRoute.Reservation}/${reservationId}`);
   }
 )

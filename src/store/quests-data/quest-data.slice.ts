@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { SORT_LEVEL, SORT_TYPE, SliceNames } from '../../config';
-import { fetchQuestAction, fetchQuestBookingAction, fetchQuestDataAction, fetchReservationAction, bookingAction, deleteReservationAction } from '../api-action';
+import { fetchQuestAction, fetchQuestBookingAction, fetchQuestDataAction, fetchReservationAction, bookingAction } from '../api-action';
 import { QuestData } from '../../types/quest';
 
 
@@ -44,7 +44,7 @@ export const questsData = createSlice({
       state.questBookingPlaceId = action.payload;
     },
     clearReservationItem: (state, action) => {
-      state.reservations = state.reservations.filter((reserv) => reserv.id !== action.payload); 
+      state.reservations = state.reservations.filter((reserv) => reserv.id !== action.payload);
     }
   },
   extraReducers(builder) {
@@ -105,9 +105,6 @@ export const questsData = createSlice({
       .addCase(bookingAction.fulfilled, (state, action) => {
         state.reservations = [...state.reservations, action.payload]
       })
-      // .addCase(deleteReservationAction.fulfilled, (state, action) => {
-
-      // })
   },
 });
 

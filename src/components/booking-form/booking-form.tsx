@@ -1,12 +1,14 @@
 import { SubmitHandler, Validate, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import Page404 from '../../pages/404/404';
-import { getQuestBookingData, getQuestBookingPlaceId, getQuestData } from '../../store/quests-data/quest-data.selectors';
 import styles from './booking-form.module.css';
-import { bookingAction } from '../../store/api-action';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getQuestBookingData, getQuestBookingPlaceId, getQuestData } from '../../store/quests-data/quest-data.selectors';
+import { bookingAction } from '../../store/api-action';
 import { AppRoute } from '../../config';
+
+import Page404 from '../../pages/404/404';
 
 
 type Inputs = {
@@ -77,7 +79,6 @@ function BookingForm(): JSX.Element {
                     <input
                       type="radio"
                       id={`today${slot.time}`}
-                      required
                       defaultValue={`today${slot.time}`}
                       disabled={!slot.isAvailable}
                       {...register(
@@ -98,13 +99,12 @@ function BookingForm(): JSX.Element {
           <legend className="booking-form__date-title">Завтра</legend>
           <div className="booking-form__date-inner-wrapper">
           {
-              bookingData.slots.today.map((slot) => {
+              bookingData.slots.tomorrow.map((slot) => {
                 return (
                   <label className="custom-radio booking-form__date" key={`tomorrow${slot.time}`}>
                     <input
                       type="radio"
                       id={`tommorow${slot.time}`}
-                      required
                       defaultValue={`tommo${slot.time}`}
                       disabled={!slot.isAvailable}
                       {...register(
@@ -163,7 +163,7 @@ function BookingForm(): JSX.Element {
             )}
           />
           {errors.tel?.type === 'required' && <><span className={styles.error} role="alert">{errors.tel.message}</span></>}
-          {errors.tel?.type === 'pattern' && <><span className={styles.error} role="alert">Введите корректный номер</span></>}
+          {errors.tel?.type === 'pattern' && <><span className={styles.error} role="alert">Введите номер в формате +7XXXXXXXXXX</span></>}
         </div>
         <div className="custom-input booking-form__input">
           <label className="custom-input__label" htmlFor="person">

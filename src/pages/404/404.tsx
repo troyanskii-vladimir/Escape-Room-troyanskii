@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../config';
+
 import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Auth from '../../components/auth/auth';
 import Footer from '../../components/footer/footer';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../config';
-import App from '../../components/app/app';
+
 
 function Page404() {
   return (

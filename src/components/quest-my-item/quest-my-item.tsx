@@ -62,7 +62,7 @@ function QuestMyItem({data}: QuestMyItemProps): JSX.Element {
           type="button"
           onClick={(evt) => {
             evt.preventDefault();
-            dispatch(deleteReservationAction({reservationId: data.id}));
+            dispatch(deleteReservationAction(data.id));
             dispatch(clearReservationItem(data.id));
           }}
         >
