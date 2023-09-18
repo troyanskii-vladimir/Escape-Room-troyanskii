@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 import Auth from '../../components/auth/auth';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
@@ -10,6 +12,7 @@ function MyQuestsPage() {
 
   return (
     <div className="wrapper">
+      <Helmet title='Мои бронирования' />
       <header className="header">
         <div className="container container--size-l">
           <Logo />

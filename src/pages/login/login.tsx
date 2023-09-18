@@ -1,5 +1,6 @@
 import { FormEvent, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useAppDispatch } from "../../hooks";
 import { loginAction } from "../../store/api-action";
 import { AppRoute } from "../../config";
@@ -75,6 +76,7 @@ function LoginPage(): JSX.Element {
 
   return (
     <div className="wrapper">
+      <Helmet title='Логин' />
       <header className="header">
         <div className="container container--size-l">
           <Logo />

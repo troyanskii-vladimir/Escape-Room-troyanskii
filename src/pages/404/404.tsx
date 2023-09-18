@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { AppRoute } from '../../config';
 
 import Logo from '../../components/logo/logo';
@@ -10,6 +11,7 @@ import Footer from '../../components/footer/footer';
 function Page404() {
   return (
     <div className="wrapper">
+      <Helmet title='Странциа не найдена' />
       <header className="header">
         <div className="container container--size-l">
           <Logo />

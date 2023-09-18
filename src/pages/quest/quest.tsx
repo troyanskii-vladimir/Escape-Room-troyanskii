@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getQuestData, getQuestDataError } from '../../store/quests-data/quest-data.selectors';
@@ -38,6 +39,7 @@ function QuestPage(): JSX.Element {
 
   return (
     <div className="wrapper">
+      <Helmet title={`Escape Room: ${quest.title}`} />
       <header className="header">
         <div className="container container--size-l">
           <Logo />

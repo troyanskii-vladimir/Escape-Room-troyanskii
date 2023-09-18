@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 import Auth from '../../components/auth/auth';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
@@ -9,6 +11,7 @@ import PageDecor from '../../components/page-decor/page-decor';
 function ContactsPage() {
   return (
     <div className="wrapper">
+      <Helmet title='Контакты' />
       <header className="header">
         <div className="container container--size-l">
           <Logo />

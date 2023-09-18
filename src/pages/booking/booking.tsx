@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getQuestBookingData, getQuestBookingPlaceId, getQuestData, getQuestDataError } from '../../store/quests-data/quest-data.selectors';
 import { fetchQuestBookingAction, fetchQuestDataAction } from '../../store/api-action';
@@ -41,6 +42,7 @@ function BookingPage() {
 
   return (
     <div className="wrapper">
+      <Helmet title='Бронирование квеста' />
       <header className="header">
         <div className="container container--size-l">
           <Logo />

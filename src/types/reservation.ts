@@ -1,4 +1,4 @@
-import { LatLngBoundsExpression, LatLngExpression } from "leaflet";
+import { LatLngBoundsExpression } from "leaflet";
 import { QuestPreview } from "./quest";
 
 export type Date = 'today' | 'tomorrow';

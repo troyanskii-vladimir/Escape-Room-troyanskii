@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Auth from '../../components/auth/auth';
@@ -11,6 +13,7 @@ function MainPage(): JSX.Element {
 
   return (
     <div className="wrapper">
+      <Helmet title='Escape Room' />
       <header className="header">
         <div className="container container--size-l">
           <Logo />
