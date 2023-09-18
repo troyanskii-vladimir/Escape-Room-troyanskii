@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../config';
 import { SORT_LEVEL } from '../../config';
+import { useAppDispatch } from '../../hooks/index';
+import { deleteReservationAction } from '../../store/api-action';
+import { clearReservationItem } from '../../store/quests-data/quest-data.slice';
 import { Reservation } from '../../types/reservation';
 
 
@@ -10,6 +13,7 @@ type QuestMyItemProps = {
 
 function QuestMyItem({data}: QuestMyItemProps): JSX.Element {
   const dayDate = data.date === 'today' ? 'сегодня' : 'завтра';
+  const dispatch = useAppDispatch();
 
   return (
     <div className="quest-card">
@@ -56,6 +60,11 @@ function QuestMyItem({data}: QuestMyItemProps): JSX.Element {
         <button
           className="btn btn--accent btn--secondary quest-card__btn"
           type="button"
+          onClick={(evt) => {
+            evt.preventDefault();
+            dispatch(deleteReservationAction({reservationId: data.id}));
+            dispatch(clearReservationItem(data.id));
+          }}
         >
           Отменить
         </button>

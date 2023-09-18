@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { QuestsData } from '../../types/state';
 import { SORT_LEVEL, SORT_TYPE, SliceNames } from '../../config';
-import { fetchQuestAction, fetchQuestBookingAction, fetchQuestDataAction, fetchReservationAction } from '../api-action';
+import { fetchQuestAction, fetchQuestBookingAction, fetchQuestDataAction, fetchReservationAction, bookingAction, deleteReservationAction } from '../api-action';
 import { QuestData } from '../../types/quest';
 
 
@@ -42,6 +42,9 @@ export const questsData = createSlice({
     },
     changeBookingPlaceId: (state, action) => {
       state.questBookingPlaceId = action.payload;
+    },
+    clearReservationItem: (state, action) => {
+      state.reservations = state.reservations.filter((reserv) => reserv.id !== action.payload); 
     }
   },
   extraReducers(builder) {
@@ -99,10 +102,13 @@ export const questsData = createSlice({
       .addCase(fetchQuestBookingAction.rejected, (state) => {
         state.isQuestsLoading = false;
       })
-      // .addCase(bookingAction.rejected, (state) => {
+      .addCase(bookingAction.fulfilled, (state, action) => {
+        state.reservations = [...state.reservations, action.payload]
+      })
+      // .addCase(deleteReservationAction.fulfilled, (state, action) => {
 
       // })
   },
 });
 
-export const { changeTypeFilter, changeLevelFilter, changeActiveQuests, clearReservation, changeBookingPlaceId } = questsData.actions;
+export const { changeTypeFilter, changeLevelFilter, changeActiveQuests, clearReservation, changeBookingPlaceId, clearReservationItem } = questsData.actions;

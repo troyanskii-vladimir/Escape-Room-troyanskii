@@ -114,3 +114,15 @@ export const bookingAction = createAsyncThunk<Reservation, Partial<DataForBookin
     return data;
   }
 );
+
+
+export const deleteReservationAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'deleteReservation',
+  async ({reservationId}, {extra: api}) => {
+    await api.delete(`${APIRoute.Reservation}/${reservationId}`);
+  }
+)

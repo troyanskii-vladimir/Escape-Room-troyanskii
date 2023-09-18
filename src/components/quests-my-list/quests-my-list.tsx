@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
 import { getReservations } from '../../store/quests-data/quest-data.selectors';
 
-import QuestMyItem from '../quest-my-item/quest-item';
+import QuestMyItem from '../quest-my-item/quest-my-item';
 
 
 function QuestsMyList(): JSX.Element {

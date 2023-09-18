@@ -1,4 +1,5 @@
 import { SubmitHandler, Validate, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Page404 from '../../pages/404/404';
 import { getQuestBookingData, getQuestBookingPlaceId, getQuestData } from '../../store/quests-data/quest-data.selectors';
@@ -228,9 +229,9 @@ function BookingForm(): JSX.Element {
         </span>
         <span className="custom-checkbox__label">
           Я&nbsp;согласен с&nbsp;
-          <a className="link link--active-silver link--underlined" href="#">
+          <Link className="link link--active-silver link--underlined" to={AppRoute.Main}>
             правилами обработки персональных данных
-          </a>
+          </Link>
           &nbsp;и пользовательским соглашением
         </span>
       </label>
